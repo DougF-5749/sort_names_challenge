@@ -79,3 +79,25 @@ def test_delete_book(db_connection, web_client):
         "Book(5, Nevada, Imogen Binnie)"
     ])
 
+
+"""
+POST /sort-names
+names=Joe,Alice,Zoe,Julia,Kieran
+"""
+def test_sort_names_1(web_client):
+    response = web_client.post("/sort-names", data={
+        'names': 'Joe,Alice,Zoe,Julia,Kieran'
+    })
+    assert response.status_code == 200
+    assert response.data.decode("utf-8") == "Alice,Joe,Julia,Kieran,Zoe"
+
+"""
+POST /sort-names
+names=Joe,Zlice,Zoe,Julia,Kieran
+"""
+def test_sort_names_2(web_client):
+    response = web_client.post("/sort-names", data={
+        'names': 'Joe,Zlice,Zoe,Julia,Kieran'
+    })
+    assert response.status_code == 200
+    assert response.data.decode("utf-8") == "Joe,Julia,Kieran,Zlice,Zoe"

@@ -52,3 +52,8 @@ def apply_example_routes(app):
         repository = BookRepository(connection)
         repository.delete(id)
         return "Book deleted successfully"
+    
+    @app.route('/sort-names', methods=['POST'])
+    def sort_names():
+        text = request.form['names']
+        return ",".join(sorted(text.split(",")))

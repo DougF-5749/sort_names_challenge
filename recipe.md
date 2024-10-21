@@ -19,7 +19,7 @@ _Include the HTTP method, the path, and any query or body parameters._
 POST /sort-names
 
 # sort-names message route
-POST /submit
+POST /sort-names
   names: comma-separated string
 ```
 
@@ -40,6 +40,12 @@ data={'names': 'Joe,Alice,Zoe,Julia,Kieran'}
 #  Alice,Joe,Julia,Kieran,Zoe
 """
 
+"""
+# POST /sort-names
+data={'names': 'Joe,Zlice,Zoe,Julia,Kieran'}
+#  Expected response (200 OK):
+#  Joe,Julia,Kieran,Zoe,Zlice
+"""
 ```
 
 ## 3. Test-drive the Route
